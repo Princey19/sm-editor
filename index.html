@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Banner Editor</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="banner-resize">
+      <a href="https://princey19.github.io/sm-resizer/" target="_blank"
+        >Banner Resizer</a
+      >
+    </div>
+    <h1>YouTube Banner Editor</h1>
+
+    <p id="notice">Upload an image to start editing your YouTube banner.</p>
+
+    <input type="file" id="imageUpload" accept="image/*" />
+
+    <div class="controls" id="controls">
+      <label
+        >Zoom:
+        <input
+          type="range"
+          id="imageScale"
+          min="0.2"
+          max="3"
+          value="1"
+          step="0.01"
+          class="slider"
+      /></label>
+      <label
+        >Image Size:
+        <input
+          type="range"
+          id="imageSize"
+          min="100"
+          max="1000"
+          value="400"
+          class="slider"
+      /></label>
+      <input type="text" id="leftText" placeholder="Left Text" />
+      <input type="text" id="rightText" placeholder="Right Text" />
+      <label
+        >Font:
+        <select id="fontSelect">
+          <option value="Arial">Arial</option>
+          <option value="Poppins">Poppins</option>
+          <option value="Roboto">Roboto</option>
+          <option value="Montserrat">Montserrat</option>
+          <option value="Impact">Impact</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Courier New">Courier New</option>
+        </select>
+      </label>
+      <label
+        >Font Size:
+        <input
+          type="range"
+          id="fontSize"
+          min="10"
+          max="80"
+          value="28"
+          class="slider"
+        />
+      </label>
+      <label
+        >Font Color: <input type="color" id="fontColor" value="#ffffff"
+      /></label>
+      <label
+        >Background: <input type="color" id="bgColor" value="#000000"
+      /></label>
+      <div>
+        <button id="centerBtn">Center Align</button>
+        <button id="downloadBtn">Download Banner</button>
+      </div>
+    </div>
+
+    <div id="bannerArea">
+      <div id="leftTextDisplay" class="side-text"></div>
+      <img id="uploadedImage" />
+      <div id="rightTextDisplay" class="side-text"></div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
