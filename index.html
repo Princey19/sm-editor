@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YouTube Banner Editor</title>
+    <title>Banner Editor</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -12,13 +12,38 @@
         >Banner Resizer</a
       >
     </div>
-    <h1>YouTube Banner Editor</h1>
+    <h1>Banner Editor</h1>
 
     <p id="notice">Upload an image to start editing your YouTube banner.</p>
 
     <input type="file" id="imageUpload" accept="image/*" />
 
     <div class="controls" id="controls">
+      <!-- background selection mode -->
+      <label><b>Background Mode:</b></label>
+      <select id="bgMode">
+        <!-- NEW -->
+        <option value="color">Color</option>
+        <option value="image">Image</option>
+      </select>
+
+      <label
+        >Background Color:
+        <input type="color" id="bgColor" value="#000000" />
+      </label>
+
+      <!-- NEW: Background image upload -->
+      <label id="bgImageLabel" style="display: none">
+        Background Image:
+        <input type="file" id="bgImageUpload" accept="image/*" />
+      </label>
+
+      <!-- NEW: Remove background image -->
+      <button id="removeBgImageBtn" style="display: none; background: #e63946">
+        Remove Background Image
+      </button>
+
+      <br />
       <label
         >Zoom:
         <input
