@@ -2,6 +2,10 @@ const bannerArea = document.getElementById("bannerArea");
 const controls = document.getElementById("controls");
 const imageUpload = document.getElementById("imageUpload");
 const uploadedImage = document.getElementById("uploadedImage");
+const bgMode = document.getElementById("bgMode");
+const bgImageUpload = document.getElementById("bgImageUpload");
+const bgImageLabel = document.getElementById("bgImageLabel");
+const removeBgImageBtn = document.getElementById("removeBgImageBtn");
 const imageScale = document.getElementById("imageScale");
 const imageSize = document.getElementById("imageSize");
 const leftText = document.getElementById("leftText");
@@ -15,6 +19,8 @@ const bgColor = document.getElementById("bgColor");
 const centerBtn = document.getElementById("centerBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 const notice = document.getElementById("notice");
+
+let backgroundImage = null;
 
 // Upload image
 imageUpload.addEventListener("change", (e) => {
@@ -37,7 +43,6 @@ imageUpload.addEventListener("change", (e) => {
   };
   reader.readAsDataURL(file);
 });
-
 // Move image
 let isDraggingImg = false,
   imgOffsetX,
@@ -57,6 +62,39 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 document.addEventListener("mouseup", () => (isDraggingImg = false));
+// BACKGROUND MODE SWITCH
+bgMode.addEventListener("change", () => {
+  if (bgMode.value === "color") {
+    bgColor.style.display = "inline-block";
+    bgImageLabel.style.display = "none";
+    removeBgImageBtn.style.display = "none";
+
+    bannerArea.style.backgroundImage = "none";
+  } else {
+    bgColor.style.display = "none";
+    bgImageLabel.style.display = "inline-block";
+    removeBgImageBtn.style.display = "inline-block";
+  }
+});
+// BACKGROUND IMAGE UPLOAD
+bgImageUpload.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    backgroundImage = ev.target.result;
+    bannerArea.style.backgroundImage = `url(${backgroundImage})`;
+  };
+  reader.readAsDataURL(file);
+});
+
+// REMOVE BACKGROUND IMAGE
+removeBgImageBtn.addEventListener("click", () => {
+  backgroundImage = null;
+  bannerArea.style.backgroundImage = "none";
+  bgImageUpload.value = "";
+});
 
 // Image scale and size
 imageScale.addEventListener("input", () => {
