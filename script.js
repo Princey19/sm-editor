@@ -4,7 +4,8 @@ const imageUpload = document.getElementById("imageUpload");
 const uploadedImage = document.getElementById("uploadedImage");
 const bgMode = document.getElementById("bgMode");
 const bgImageUpload = document.getElementById("bgImageUpload");
-const bgImageLabel = document.getElementById("bgImageLabel");
+const bgImageLabel = document.getElementById("bgImageLabelGroup");
+const bgColorGroup = document.getElementById("bgColorGroup");
 const removeBgImageBtn = document.getElementById("removeBgImageBtn");
 const imageScale = document.getElementById("imageScale");
 const imageSize = document.getElementById("imageSize");
@@ -65,15 +66,14 @@ document.addEventListener("mouseup", () => (isDraggingImg = false));
 // BACKGROUND MODE SWITCH
 bgMode.addEventListener("change", () => {
   if (bgMode.value === "color") {
-    bgColor.style.display = "inline-block";
+    bgColorGroup.style.display = "flex";
     bgImageLabel.style.display = "none";
     removeBgImageBtn.style.display = "none";
-
     bannerArea.style.backgroundImage = "none";
   } else {
-    bgColor.style.display = "none";
-    bgImageLabel.style.display = "inline-block";
-    removeBgImageBtn.style.display = "inline-block";
+    bgColorGroup.style.display = "none";
+    bgImageLabel.style.display = "flex";
+    removeBgImageBtn.style.display = "inline-flex";
   }
 });
 // BACKGROUND IMAGE UPLOAD
@@ -107,11 +107,11 @@ imageSize.addEventListener("input", () => {
 // Text updates
 leftText.addEventListener(
   "input",
-  () => (leftTextDisplay.textContent = leftText.value)
+  () => (leftTextDisplay.textContent = leftText.value),
 );
 rightText.addEventListener(
   "input",
-  () => (rightTextDisplay.textContent = rightText.value)
+  () => (rightTextDisplay.textContent = rightText.value),
 );
 
 // Make text draggable
@@ -171,9 +171,17 @@ centerBtn.addEventListener("click", () => {
 
 // Download banner
 downloadBtn.addEventListener("click", () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const day = date.getDay();
+  const hours = date.getHours();
+  const mins = date.getMinutes();
+  const sec = date.getSeconds();
+  console.log(hours);
+
   html2canvas(bannerArea).then((canvas) => {
     const link = document.createElement("a");
-    link.download = "youtube_banner.png";
+    link.download = `youtube_banner ${year}-${day}-${hours}:${mins}:${sec}.png`;
     link.href = canvas.toDataURL();
     link.click();
   });
